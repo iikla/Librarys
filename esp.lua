@@ -7,6 +7,7 @@ local Config = {
     HealthBar         = false,
     HealthBarSide     = "Left", -- Left,Bottom,Right
     Names             = false,
+    DisplayNames       = false,
     NamesOutline      = false,
     NamesColor        = Color3.fromRGB(255,255,255),
     NamesOutlineColor = Color3.fromRGB(0,0,0),
@@ -45,7 +46,7 @@ function CreateEsp(Player)
             if Config.Names then
                 Name.Visible = IsVisible
                 Name.Color = Config.NamesColor
-                Name.Text = Player.DisplayName.." "..math.floor((workspace.CurrentCamera.CFrame.p - Player.Character.HumanoidRootPart.Position).magnitude).."m"
+                Name.Text = Player.Name.." "..math.floor((workspace.CurrentCamera.CFrame.p - Player.Character.HumanoidRootPart.Position).magnitude).."m"
                 Name.Center = true
                 Name.Outline = Config.NamesOutline
                 Name.OutlineColor = Config.NamesOutlineColor
@@ -55,6 +56,19 @@ function CreateEsp(Player)
             else
                 Name.Visible = false
             end
+              if Config.DisplayNames then
+                DisplayName.Visible = IsVisible
+                DisplayName.Color = Config.NamesColor
+                DisplayName.Text = Player.DisplayName.." "..math.floor((workspace.CurrentCamera.CFrame.p - Player.Character.HumanoidRootPart.Position).magnitude).."m"
+                DisplayName.Center = true
+                DisplayName.Outline = Config.NamesOutline
+                DisplayName.OutlineColor = Config.NamesOutlineColor
+                DisplayName.Position = Vector2.new(Target2dPosition.X,Target2dPosition.Y - height * 0.5 + -15)
+                DisplayName.Font = Config.NamesFont
+                DisplayName.Size = Config.NamesSize
+            else
+                DisplayNames.Visible = false
+            end    
             if Config.HealthBar then
                 HealthBarOutline.Visible = IsVisible
                 HealthBarOutline.Color = Color3.fromRGB(0,0,0)
@@ -93,12 +107,14 @@ function CreateEsp(Player)
             Box.Visible = false
             BoxOutline.Visible = false
             Name.Visible = false
+            DisplayName.Visible = false
             HealthBar.Visible = false
             HealthBarOutline.Visible = false
             if not Player then
                 Box:Remove()
                 BoxOutline:Remove()
                 Name:Remove()
+                DisplayName:Remove()
                 HealthBar:Remove()
                 HealthBarOutline:Remove()
                 Updater:Disconnect()
