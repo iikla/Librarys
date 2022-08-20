@@ -67,7 +67,7 @@ function CreateEsp(Player)
                 DisplayName.Font = Config.NamesFont
                 DisplayName.Size = Config.NamesSize
             else
-                DisplayNames.Visible = false
+                DisplayName.Visible = false
             end    
             if Config.HealthBar then
                 HealthBarOutline.Visible = IsVisible
